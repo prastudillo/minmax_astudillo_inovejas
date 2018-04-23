@@ -8,27 +8,27 @@ public class DrawPanel extends JPanel{
     private JButton reset;
     
 	public DrawPanel(Panel frame){
-		this.setPreferredSize(new Dimension(650 , 100));
-        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		this.setPreferredSize(new Dimension(650, 100));
+        this.setLayout(new BorderLayout());
         this.setBackground(Color.decode("#2980b9"));
 
         this.draw = new JLabel();
-        this.draw.setFont(new Font("Serif", Font.PLAIN, 20));
+        this.draw.setFont(new Font("Serif", Font.PLAIN, 50));
         this.draw.setForeground(Color.white);
         this.draw.setText("Draw!");
         this.draw.setHorizontalAlignment(JLabel.CENTER);
         this.draw.setVerticalAlignment(JLabel.CENTER);
 
         this.reset = new JButton("Reset");
-        this.reset.setPreferredSize(new Dimension(100,100));
+        this.reset.setPreferredSize(new Dimension(100,50));
 
-        this.add(draw);
-        this.add(reset);
+        this.add(draw,BorderLayout.CENTER);
+        this.add(reset,BorderLayout.LINE_END);
 
         this.reset.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 CardLayout c = (CardLayout) frame.getLayout();
-                c.show(frame,"Game");
+                c.show(frame,"TurnIndicator");
             }
         });
 

@@ -19,7 +19,8 @@ public class Panel extends JPanel{
         this.draw = new DrawPanel(this);
 
 
-        this.add(new Game(this),"Game");
+        // this.add(new Game(this),"Game");
+        this.add(turnIndicator,"TurnIndicator");
         this.add(win,"Win");
         this.add(lose,"Lose");
         this.add(draw,"Draw");

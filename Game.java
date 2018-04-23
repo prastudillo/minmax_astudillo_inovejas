@@ -8,7 +8,6 @@ public class Game extends JPanel{
     private JButton[][] buttons = new JButton[3][3];
     private Character[][] map = new Character[3][3];
     private Panel frame;
-    private Thread thread = new Thread();
 
     public Game(Panel frame){
         this.frame = frame;
@@ -25,10 +24,14 @@ public class Game extends JPanel{
             for(int j = 0; j < 3; j++){
                 
                 map[i][j] = 'e';
+
                 //Instantiating buttons 
                 buttons[i][j] = new JButton();                
                 buttons[i][j].setText("");
                 buttons[i][j].setVisible(true);
+                buttons[i][j].setFont(new Font("Arial", Font.PLAIN, 40));
+                buttons[i][j].setBackground(Color.WHITE);
+                buttons[i][j].setEnabled(true);
 
                 this.add(buttons[i][j]); 
                 buttons[i][j].addActionListener(new myActionListener());   
@@ -37,7 +40,20 @@ public class Game extends JPanel{
 
     }
     
+    public void disableButtons(){
 
+        for(int i = 0; i < 3; i++){                   
+            for(int j = 0; j < 3; j++){
+                
+
+                buttons[i][j].setVisible(true);
+                buttons[i][j].setEnabled(false);
+
+
+            }
+        }
+
+    }
     public void aiTurn(){
        
        try{
@@ -49,14 +65,10 @@ public class Game extends JPanel{
         buttons[row][col].setEnabled(false);
         check();
        }catch(Exception e){
-        try{
-            thread.sleep(100);
-        }catch(Exception ex){
-            
-        }
+    
         CardLayout c = (CardLayout) frame.getLayout();
-        this.removeAll();
-        this.initialize();
+        // this.removeAll();
+        // this.initialize();
         c.show(frame,"Draw");
        }
     }
@@ -67,14 +79,16 @@ public class Game extends JPanel{
 		Character h = checkHorizontal();
 		if(d == 'X' || v == 'X' || h == 'X'){
             CardLayout c = (CardLayout) frame.getLayout();
-            this.removeAll();
-            this.initialize();
+            this.disableButtons();
+            // this.removeAll();
+            // this.initialize();
             c.show(frame,"Win");
         }  
 		else if(d == 'O' || v == 'O' || h == 'O'){
             CardLayout c = (CardLayout) frame.getLayout();
-            this.removeAll();
-            this.initialize();
+            this.disableButtons();
+            // this.removeAll();
+            // this.initialize();
             c.show(frame,"Lose");
         } 
         
@@ -158,6 +172,7 @@ public class Game extends JPanel{
                 buttons[2][0].setEnabled(false);
                 aiTurn();
             }
+            
         }
     }
 
