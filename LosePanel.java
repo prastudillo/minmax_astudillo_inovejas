@@ -8,7 +8,8 @@ public class LosePanel extends JPanel{
     private JButton reset;
     private Game game;
 
-	public LosePanel(Panel frame){
+	public LosePanel(Panel frame,Game game){
+        this.game = game;
 		this.setPreferredSize(new Dimension(650 , 100));
         this.setLayout(new BorderLayout());
         this.setBackground(Color.decode("#2980b9"));
@@ -21,7 +22,7 @@ public class LosePanel extends JPanel{
         this.lose.setVerticalAlignment(JLabel.CENTER);
 
         this.reset = new JButton("Reset");
-        this.reset.setPreferredSize(new Dimension(50,50));
+        this.reset.setPreferredSize(new Dimension(100,50));
         this.reset.setMargin(new Insets(0, 0, 0, 0));
 
         this.add(lose,BorderLayout.CENTER);
@@ -31,7 +32,6 @@ public class LosePanel extends JPanel{
             public void actionPerformed(ActionEvent e){
                 CardLayout c = (CardLayout) frame.getLayout();
                 c.show(frame,"TurnIndicator"); 
-                game = new Game(frame);
                 game.removeAll();
                 game.initialize();
                 // System.out.println("Hello");

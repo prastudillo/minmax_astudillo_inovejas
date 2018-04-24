@@ -6,8 +6,10 @@ import java.util.*;
 public class WinPanel extends JPanel{
     private JLabel win;
     private JButton reset;
+    private Game game;
     
-	public WinPanel(Panel frame){
+	public WinPanel(Panel frame, Game game){
+        this.game = game;
 		this.setPreferredSize(new Dimension(650 , 100));
         this.setLayout(new BorderLayout());
         this.setBackground(Color.decode("#2980b9"));
@@ -30,6 +32,8 @@ public class WinPanel extends JPanel{
             public void actionPerformed(ActionEvent e){
                 CardLayout c = (CardLayout) frame.getLayout();
                 c.show(frame,"TurnIndicator");
+                game.removeAll();
+                game.initialize();
             }
         });
 

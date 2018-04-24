@@ -6,8 +6,10 @@ import java.util.*;
 public class DrawPanel extends JPanel{
     private JLabel draw;
     private JButton reset;
+    private Game game;
     
-	public DrawPanel(Panel frame){
+	public DrawPanel(Panel frame, Game game){
+        this.game = game;
 		this.setPreferredSize(new Dimension(650, 100));
         this.setLayout(new BorderLayout());
         this.setBackground(Color.decode("#2980b9"));
@@ -29,6 +31,8 @@ public class DrawPanel extends JPanel{
             public void actionPerformed(ActionEvent e){
                 CardLayout c = (CardLayout) frame.getLayout();
                 c.show(frame,"TurnIndicator");
+                game.removeAll();
+                game.initialize();
             }
         });
 

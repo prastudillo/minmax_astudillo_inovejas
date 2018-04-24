@@ -17,6 +17,8 @@ public class GameFrame extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.panel = new Panel(this);
         this.game = new Game(panel);
+        this.panel.setGame(this.game);
+        this.panel.initialize();
 
         this.add(panel,BorderLayout.NORTH);
         this.add(game,BorderLayout.CENTER);
